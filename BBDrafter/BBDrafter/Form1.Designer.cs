@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -37,13 +37,14 @@
             this.listEnemy = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // rtbLog
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(9, 409);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(572, 120);
-            this.richTextBox1.TabIndex = 23;
-            this.richTextBox1.Text = "";
+            this.rtbLog.Location = new System.Drawing.Point(9, 409);
+            this.rtbLog.Name = "rtbLog";
+            this.rtbLog.ReadOnly = true;
+            this.rtbLog.Size = new System.Drawing.Size(572, 120);
+            this.rtbLog.TabIndex = 23;
+            this.rtbLog.Text = "";
             // 
             // label1
             // 
@@ -136,13 +137,7 @@
             // 
             // listPool
             // 
-            this.listPool.AllowDrop = true;
             this.listPool.FormattingEnabled = true;
-            this.listPool.Items.AddRange(new object[] {
-            "Montana",
-            "Orendi",
-            "Isic",
-            "Caldarius"});
             this.listPool.Location = new System.Drawing.Point(221, 32);
             this.listPool.Name = "listPool";
             this.listPool.Size = new System.Drawing.Size(144, 342);
@@ -162,7 +157,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 536);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -175,7 +170,7 @@
             this.Controls.Add(this.listPool);
             this.Controls.Add(this.listEnemy);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "BBDrafter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -184,7 +179,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
