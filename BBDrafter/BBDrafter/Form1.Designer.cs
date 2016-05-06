@@ -25,8 +25,8 @@
         private void InitializeComponent() {
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtEnemyName = new System.Windows.Forms.TextBox();
+            this.txtFriendlyName = new System.Windows.Forms.TextBox();
             this.btnRemoveRight = new System.Windows.Forms.Button();
             this.btnRemoveLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
@@ -55,22 +55,22 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "by turtsmcgurts";
             // 
-            // textBox2
+            // txtEnemyName
             // 
-            this.textBox2.Location = new System.Drawing.Point(436, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBox2.Size = new System.Drawing.Size(144, 20);
-            this.textBox2.TabIndex = 21;
-            this.textBox2.Text = "OTHER TEAM";
+            this.txtEnemyName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtEnemyName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtEnemyName.Location = new System.Drawing.Point(436, 6);
+            this.txtEnemyName.Name = "txtEnemyName";
+            this.txtEnemyName.Size = new System.Drawing.Size(144, 20);
+            this.txtEnemyName.TabIndex = 21;
             // 
-            // textBox1
+            // txtFriendlyName
             // 
-            this.textBox1.Location = new System.Drawing.Point(8, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(142, 20);
-            this.textBox1.TabIndex = 20;
-            this.textBox1.Text = "itsalreadygg";
+            this.txtFriendlyName.Location = new System.Drawing.Point(8, 6);
+            this.txtFriendlyName.Name = "txtFriendlyName";
+            this.txtFriendlyName.Size = new System.Drawing.Size(142, 20);
+            this.txtFriendlyName.TabIndex = 20;
+            this.txtFriendlyName.Text = "itsalreadygg";
             // 
             // btnRemoveRight
             // 
@@ -159,8 +159,8 @@
             this.ClientSize = new System.Drawing.Size(588, 536);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtEnemyName);
+            this.Controls.Add(this.txtFriendlyName);
             this.Controls.Add(this.btnRemoveRight);
             this.Controls.Add(this.btnRemoveLeft);
             this.Controls.Add(this.btnRight);
@@ -181,8 +181,8 @@
 
         private System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtEnemyName;
+        private System.Windows.Forms.TextBox txtFriendlyName;
         private System.Windows.Forms.Button btnRemoveRight;
         private System.Windows.Forms.Button btnRemoveLeft;
         private System.Windows.Forms.Button btnRight;

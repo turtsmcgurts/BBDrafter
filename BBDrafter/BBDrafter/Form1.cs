@@ -12,9 +12,14 @@ using System.Windows.Forms;
 namespace BBDrafter {
     public partial class Form1 : Form {
         #region Variables
+        static bool saveLogs = true; //saves the console output to a file
 
+        AutoCompleteStringCollection autoItems = new AutoCompleteStringCollection();
+        List<string> teamDirectories = new List<string>();
         static string poolFileName = "characterPool.txt";
         static string poolFilePath = Application.StartupPath + "\\" + poolFileName;
+        static string logFileDate = string.Format("{0:yyyy-MM-dd_hh-mm-tt}", DateTime.Now);
+        static string logFilePath = Application.StartupPath + "\\Logs\\";
         static string[] defaultCharacters = { "Ambra", "Attikus", "Benedict", "Boldur", "Caldarius", "Deande", "El Dragon", "Galilea", 
                                               "Ghalt", "Isic", "Kelvin", "Kleese", "Marquis", "Mellka", "Miko", "Montana", "Orendi", 
                                               "Oscar Mike", "Phoebe", "Rath", "Reyna", "Shayne&Aurox", "Thorn", "Toby", "Whiskey Foxtrot"};
@@ -32,40 +37,53 @@ namespace BBDrafter {
 
         private void Form1_Load(object sender, EventArgs e) {
             RetrieveCharacterPool(); //populate the character pool from 'filePath'
+            RetrieveTeamDirectories(); //populate autocomplete for opposing team name with known teams
         }
 
         private void btnLeft_Click(object sender, EventArgs e) {
             if (listPool.Items.Count <= 0 || listPool.SelectedItem == null) return;
+            if (txtEnemyName.Text == null || txtEnemyName.Text == "") MessageBox.Show("Enter enemy team name before picking."); return;
 
+            WriteLog(txtFriendlyName.Text + " picked " + listPool.SelectedItem.ToString());
             listFriendly.Items.Add(listPool.SelectedItem.ToString());
             listPool.Items.Remove(listPool.SelectedItem);
+
         }
 
         private void btnRight_Click(object sender, EventArgs e) {
             if (listPool.Items.Count <= 0 || listPool.SelectedItem == null) return;
-            
+            if (txtEnemyName.Text == null || txtEnemyName.Text == "") MessageBox.Show("Enter enemy team name before picking."); return;
+
+            WriteLog(txtEnemyName.Text + " picked " + listPool.SelectedItem.ToString());
             listEnemy.Items.Add(listPool.SelectedItem.ToString());
             listPool.Items.Remove(listPool.SelectedItem);
+
         }
 
         private void btnRemoveLeft_Click(object sender, EventArgs e) {
             if (listFriendly.Items.Count <= 0 || listFriendly.SelectedItem == null) return;
 
+            WriteLog(txtFriendlyName.Text + " removed " + listFriendly.SelectedItem.ToString());
             listPool.Items.Add(listFriendly.SelectedItem);
             listFriendly.Items.Remove(listFriendly.SelectedItem);
+
         }
 
         private void btnRemoveRight_Click(object sender, EventArgs e) {
             if (listEnemy.Items.Count <= 0 || listEnemy.SelectedItem == null) return;
 
+            WriteLog(txtEnemyName.Text + " removed " + listEnemy.SelectedItem.ToString());
             listPool.Items.Add(listEnemy.SelectedItem);
             listEnemy.Items.Remove(listEnemy.SelectedItem);
+
         }
 
         private void btnReset_Click(object sender, EventArgs e) {
             listFriendly.Items.Clear();
             listEnemy.Items.Clear();
-            RetrieveCharacterPool();
+            rtbLog.Clear();
+            RetrieveCharacterPool(); //populate the character pool from 'filePath'
+            RetrieveTeamDirectories(); //populate autocomplete for opposing team name with known teams
 
         }
 
@@ -101,6 +119,32 @@ namespace BBDrafter {
             }
         }
 
+        private void RetrieveTeamDirectories() {
+            Directory.CreateDirectory(logFilePath);
+            string[] teams = Directory.GetDirectories(logFilePath);
+            
+            foreach (string t in teams) {
+                string name = Path.GetFileName(t);
+                teamDirectories.Add(name);
+                autoItems.Add(name);
+            }
+
+            txtEnemyName.AutoCompleteCustomSource = autoItems;
+        }
+
+        private void WriteLog(string message) {
+            if (message == null || message == "") return;
+            rtbLog.AppendText(message + "\n");
+
+            Directory.CreateDirectory(logFilePath + txtEnemyName.Text);
+
+            if (!saveLogs) return;
+            using (FileStream stream = new FileStream(logFilePath + txtEnemyName.Text + "\\" + logFileDate + ".txt", FileMode.Append, FileAccess.Write, FileShare.Write)) {
+                using (StreamWriter sw = new StreamWriter(stream)) {
+                    sw.WriteLine(message);
+                }
+            }
+        }
 
     }
 }
