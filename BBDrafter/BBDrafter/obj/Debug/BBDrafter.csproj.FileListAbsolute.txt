@@ -1,1 +1,9 @@
 C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\bin\Debug\BBDrafter.exe.config
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\obj\Debug\BBDrafter.csprojResolveAssemblyReference.cache
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\obj\Debug\BBDrafter.Form1.resources
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\obj\Debug\BBDrafter.Properties.Resources.resources
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\obj\Debug\BBDrafter.csproj.GenerateResource.Cache
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\bin\Debug\BBDrafter.exe
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\bin\Debug\BBDrafter.pdb
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\obj\Debug\BBDrafter.exe
+C:\Users\slizi\Documents\GitHub\BBDrafter\BBDrafter\BBDrafter\obj\Debug\BBDrafter.pdb
