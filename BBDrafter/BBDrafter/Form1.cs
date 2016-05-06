@@ -26,9 +26,7 @@ namespace BBDrafter {
 
 
         #endregion
-
-
-
+        
         #region Form Generated
 
         public Form1() {
@@ -42,7 +40,10 @@ namespace BBDrafter {
 
         private void btnLeft_Click(object sender, EventArgs e) {
             if (listPool.Items.Count <= 0 || listPool.SelectedItem == null) return;
-            if (txtEnemyName.Text == null || txtEnemyName.Text == "") MessageBox.Show("Enter enemy team name before picking."); return;
+            if (txtEnemyName.Text == null || txtEnemyName.Text == "") {
+                MessageBox.Show("Enter enemy team name before picking.");
+                return;
+            }
 
             WriteLog(txtFriendlyName.Text + " picked " + listPool.SelectedItem.ToString());
             listFriendly.Items.Add(listPool.SelectedItem.ToString());
@@ -52,7 +53,10 @@ namespace BBDrafter {
 
         private void btnRight_Click(object sender, EventArgs e) {
             if (listPool.Items.Count <= 0 || listPool.SelectedItem == null) return;
-            if (txtEnemyName.Text == null || txtEnemyName.Text == "") MessageBox.Show("Enter enemy team name before picking."); return;
+            if (txtEnemyName.Text == null || txtEnemyName.Text == "") {
+                MessageBox.Show("Enter enemy team name before picking.");
+                return;
+            }
 
             WriteLog(txtEnemyName.Text + " picked " + listPool.SelectedItem.ToString());
             listEnemy.Items.Add(listPool.SelectedItem.ToString());
