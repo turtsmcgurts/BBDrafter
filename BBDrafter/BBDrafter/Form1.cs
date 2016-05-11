@@ -39,11 +39,7 @@ namespace BBDrafter {
         }
 
         private void btnLeft_Click(object sender, EventArgs e) {
-            if (listPool.Items.Count <= 0 || listPool.SelectedItem == null) return;
-            if (txtEnemyName.Text == null || txtEnemyName.Text == "") {
-                MessageBox.Show("Enter enemy team name before picking.");
-                return;
-            }
+            if (!CanPick()) return;
 
             WriteLog(txtFriendlyName.Text + " picked " + listPool.SelectedItem.ToString());
             listFriendly.Items.Add(listPool.SelectedItem.ToString());
@@ -52,11 +48,7 @@ namespace BBDrafter {
         }
 
         private void btnRight_Click(object sender, EventArgs e) {
-            if (listPool.Items.Count <= 0 || listPool.SelectedItem == null) return;
-            if (txtEnemyName.Text == null || txtEnemyName.Text == "") {
-                MessageBox.Show("Enter enemy team name before picking.");
-                return;
-            }
+            if (!CanPick()) return;
 
             WriteLog(txtEnemyName.Text + " picked " + listPool.SelectedItem.ToString());
             listEnemy.Items.Add(listPool.SelectedItem.ToString());
@@ -67,7 +59,7 @@ namespace BBDrafter {
         private void btnRemoveLeft_Click(object sender, EventArgs e) {
             if (listFriendly.Items.Count <= 0 || listFriendly.SelectedItem == null) return;
 
-            WriteLog(txtFriendlyName.Text + " removed " + listFriendly.SelectedItem.ToString());
+            WriteLog(txtFriendlyName.Text + " removed " + listFriendly.SelectedItem.ToString() + " pick");
             listPool.Items.Add(listFriendly.SelectedItem);
             listFriendly.Items.Remove(listFriendly.SelectedItem);
 
@@ -76,7 +68,7 @@ namespace BBDrafter {
         private void btnRemoveRight_Click(object sender, EventArgs e) {
             if (listEnemy.Items.Count <= 0 || listEnemy.SelectedItem == null) return;
 
-            WriteLog(txtEnemyName.Text + " removed " + listEnemy.SelectedItem.ToString());
+            WriteLog(txtEnemyName.Text + " removed " + listEnemy.SelectedItem.ToString() + " pick");
             listPool.Items.Add(listEnemy.SelectedItem);
             listEnemy.Items.Remove(listEnemy.SelectedItem);
 
@@ -84,19 +76,30 @@ namespace BBDrafter {
 
         private void btnReset_Click(object sender, EventArgs e) {
             listFriendly.Items.Clear();
+            listLeftBans.Items.Clear();
             listEnemy.Items.Clear();
+            listRightBans.Items.Clear();
             rtbLog.Clear();
+
             RetrieveCharacterPool(); //populate the character pool from 'filePath'
             RetrieveTeamDirectories(); //populate autocomplete for opposing team name with known teams
 
         }
 
         private void btnLeftBan_Click(object sender, EventArgs e) {
+            if (!CanPick()) return;
 
+            WriteLog(txtFriendlyName.Text + " banned " + listPool.SelectedItem.ToString());
+            listLeftBans.Items.Add(listPool.SelectedItem.ToString());
+            listPool.Items.Remove(listPool.SelectedItem);
         }
 
         private void btnRightBan_Click(object sender, EventArgs e) {
+            if (!CanPick()) return;
 
+            WriteLog(txtEnemyName.Text + " banned " + listPool.SelectedItem.ToString());
+            listRightBans.Items.Add(listPool.SelectedItem.ToString());
+            listPool.Items.Remove(listPool.SelectedItem);
         }
 
         #endregion
@@ -156,6 +159,16 @@ namespace BBDrafter {
                     sw.WriteLine(message);
                 }
             }
+        }
+
+        private bool CanPick() {
+            if (listPool.Items.Count <= 0 || listPool.SelectedItem == null) return false;
+            if (txtEnemyName.Text == null || txtEnemyName.Text == "") {
+                MessageBox.Show("Enter enemy team name before picking.");
+                return false;
+            }
+
+            return true;
         }
 
     }
