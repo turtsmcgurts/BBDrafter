@@ -20,13 +20,13 @@ namespace BBDrafter {
         static string poolFilePath = Application.StartupPath + "\\" + poolFileName;
         static string logFileDate = string.Format("{0:yyyy-MM-dd_hh-mm-tt}", DateTime.Now);
         static string logFilePath = Application.StartupPath + "\\Logs\\";
-        static string[] defaultCharacters = { "Ambra", "Attikus", "Benedict", "Boldur", "Caldarius", "Deande", "El Dragon", "Galilea", 
-                                              "Ghalt", "Isic", "Kelvin", "Kleese", "Marquis", "Mellka", "Miko", "Montana", "Orendi", 
+        static string[] defaultCharacters = { "Ambra", "Attikus", "Benedict", "Boldur", "Caldarius", "Deande", "El Dragon", "Galilea",
+                                              "Ghalt", "Isic", "Kelvin", "Kleese", "Marquis", "Mellka", "Miko", "Montana", "Orendi",
                                               "Oscar Mike", "Phoebe", "Rath", "Reyna", "Shayne&Aurox", "Thorn", "Toby", "Whiskey Foxtrot"};
 
 
         #endregion
-        
+
         #region Form Generated
 
         public Form1() {
@@ -91,6 +91,14 @@ namespace BBDrafter {
 
         }
 
+        private void btnLeftBan_Click(object sender, EventArgs e) {
+
+        }
+
+        private void btnRightBan_Click(object sender, EventArgs e) {
+
+        }
+
         #endregion
 
         private void RetrieveCharacterPool() {
@@ -101,7 +109,7 @@ namespace BBDrafter {
                 File.Create(poolFilePath).Close();
 
                 using (StreamWriter writer = new StreamWriter(poolFilePath)) {
-                    foreach(string c in defaultCharacters) {
+                    foreach (string c in defaultCharacters) {
                         writer.WriteLine(c);
                     }
                 }
@@ -126,7 +134,7 @@ namespace BBDrafter {
         private void RetrieveTeamDirectories() {
             Directory.CreateDirectory(logFilePath);
             string[] teams = Directory.GetDirectories(logFilePath);
-            
+
             foreach (string t in teams) {
                 string name = Path.GetFileName(t);
                 teamDirectories.Add(name);
